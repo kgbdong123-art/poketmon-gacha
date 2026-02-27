@@ -225,6 +225,16 @@ app.get('/api/user/status/:id', async (req, res) => {
         res.status(500).json({ error: '상태 조회 중 오류가 발생했습니다.' });
     }
 });
+// Admin Get All Users Route
+app.get('/api/admin/users', async (req, res) => {
+    try {
+        const users = await User.find({}, { pw: 0 }); // 비밀번호 제외
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ error: '유저 목록 조회 중 오류가 발생했습니다.' });
+    }
+});
+
 
 // Admin Add Coins Route
 app.post('/api/admin/add-coins', async (req, res) => {
@@ -276,3 +286,4 @@ app.use((req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on http://0.0.0.0:${PORT}`);
 });
+
