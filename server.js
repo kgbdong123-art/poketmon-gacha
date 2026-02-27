@@ -26,6 +26,13 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 app.use(cors());
 app.use(express.json());
+
+// Global Request Logger
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} from ${req.ip}`);
+    next();
+});
+
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // MongoDB Connection
@@ -82,23 +89,28 @@ const getInventory = async () => {
 app.post('/api/signup', async (req, res) => {
     let { id, pw, name, contact, address } = req.body;
     if (!id || !pw || !name) {
+        console.warn('Signup attempt failed: Missing required fields');
         return res.status(400).json({ error: '필수 정보가 누락되었습니다.' });
     }
 
+    const normalizedId = id.trim().toLowerCase();
     try {
-        const existingUser = await User.findOne({ id: id.trim().toLowerCase() });
+        const existingUser = await User.findOne({ id: normalizedId });
         if (existingUser) {
+            console.warn(`Signup attempt failed: ID already exists (${normalizedId})`);
             return res.status(409).json({ error: '이미 존재하는 아이디입니다.' });
         }
 
-        const newUser = new User({ id, pw, name, contact, address });
+        const newUser = new User({ id: normalizedId, pw, name, contact, address });
         await newUser.save();
 
+        console.log(`User signed up successfully: ${normalizedId}`);
         res.status(201).json({
             message: '회원가입이 완료되었습니다.',
             user: { id: newUser.id, name: newUser.name, coins: newUser.coins }
         });
     } catch (error) {
+        console.error('CRITICAL: Signup error:', error);
         res.status(500).json({ error: '회원가입 중 서버 오류가 발생했습니다.' });
     }
 });
@@ -106,28 +118,53 @@ app.post('/api/signup', async (req, res) => {
 // Login Route
 app.post('/api/login', async (req, res) => {
     let { id, pw } = req.body;
-    if (!id || !pw) return res.status(400).json({ error: '아이디와 비밀번호를 입력해주세요.' });
+
+    // Type check to prevent .trim() crashes
+    if (typeof id !== 'string' || typeof pw !== 'string') {
+        console.warn('Login attempt failed: Invalid input types', { idType: typeof id, pwType: typeof pw });
+        return res.status(400).json({ error: '아이디와 비밀번호는 문자열이어야 합니다.' });
+    }
+
+    if (!id.trim() || !pw) {
+        console.warn('Login attempt failed: Empty ID or PW');
+        return res.status(400).json({ error: '아이디와 비밀번호를 입력해주세요.' });
+    }
+
+    const normalizedId = id.trim().toLowerCase();
+    console.log(`Login attempt for ID: ${normalizedId}`);
 
     try {
-        const user = await User.findOne({ id: id.trim().toLowerCase(), pw });
+        // Check DB connection state
+        if (mongoose.connection.readyState !== 1) {
+            console.error('Database is not connected. Current state:', mongoose.connection.readyState);
+            return res.status(503).json({ error: '데이터베이스 연결이 일시적으로 원활하지 않습니다. 잠시 후 다시 시도해주세요.' });
+        }
+
+        const user = await User.findOne({ id: normalizedId, pw });
         if (!user) {
+            console.warn(`Login failed for ID: ${normalizedId} (Invalid credentials)`);
             return res.status(401).json({ error: '아이디 또는 비밀번호가 일치하지 않습니다.' });
         }
 
+        console.log(`Login successful for ID: ${normalizedId}`);
         const safeUser = user.toObject();
         delete safeUser.pw;
         res.status(200).json({ message: '로그인 성공', user: safeUser });
     } catch (error) {
-        res.status(500).json({ error: '로그인 중 서버 오류가 발생했습니다.' });
+        console.error(`CRITICAL: Login error for ID ${normalizedId || 'unknown'}:`, error);
+        res.status(500).json({ error: '로그인 중 서버 오류가 발생했습니다. 잠시 후 다시 시도하거나 관리자에게 문의하세요.' });
     }
 });
 
 // Inventory Route
 app.get('/api/inventory', async (req, res) => {
     try {
+        console.log('GET /api/inventory request received');
         const inv = await getInventory();
+        console.log('Inventory data fetched successfully');
         res.status(200).json(inv.counts);
     } catch (error) {
+        console.error('CRITICAL ERROR: GET /api/inventory failed:', error);
         res.status(500).json({ error: '재고 조회 중 오류가 발생했습니다.' });
     }
 });
@@ -176,12 +213,15 @@ app.post('/api/gacha', async (req, res) => {
 app.get('/api/user/status/:id', async (req, res) => {
     const { id } = req.params;
     try {
+        console.log(`GET /api/user/status/${id} request received`);
         const user = await User.findOne({ id: id.toLowerCase() });
         if (!user) {
+            console.warn(`User status check failed: User not found (${id})`);
             return res.status(404).json({ error: '유저를 찾을 수 없습니다.' });
         }
         res.status(200).json({ coins: user.coins || 0 });
     } catch (error) {
+        console.error(`CRITICAL ERROR: GET /api/user/status/${id} failed:`, error);
         res.status(500).json({ error: '상태 조회 중 오류가 발생했습니다.' });
     }
 });
