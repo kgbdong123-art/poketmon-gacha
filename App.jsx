@@ -795,7 +795,17 @@ function App() {
                   뽑기 비용 안내
                 </h3>
                 <p className="text-gray-300 ml-3.5">
-                  코인 <span className="text-white font-bold">1개</span>당 뽑기 <span className="text-white font-bold">1회</span>가 가능합니다. 코인이 부족할 경우 관리자에게 문의하여 충전 후 이용해 주세요.
+                  코인 <span className="text-white font-bold">1개(1,000원)</span>당 뽑기 <span className="text-white font-bold">1회</span>가 가능합니다. 코인이 부족할 경우 관리자에게 문의하여 충전 후 이용해 주세요.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                <h3 className="text-emerald-400 font-bold mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  배송 관련 안내
+                </h3>
+                <p className="text-gray-300 ml-3.5">
+                  배송비는 <span className="text-white font-bold">본인 부담</span>이며, <span className="text-yellow-400 font-bold">30,000원 이상</span> 코인 구매 시 <span className="text-green-400 font-bold">무료배송</span> 혜택이 적용됩니다.
                 </p>
               </div>
 
