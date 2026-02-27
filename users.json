@@ -1,0 +1,205 @@
+[
+  {
+    "id": "testuser",
+    "pw": "password123",
+    "name": "TestUser",
+    "contact": "010-1234-5678",
+    "address": "Seoul City",
+    "gachaHistory": [
+      {
+        "grade": "AR",
+        "timestamp": "2026-02-27T07:06:45.149Z"
+      }
+    ],
+    "createdAt": "2026-02-27T07:06:32.337Z"
+  },
+  {
+    "id": "kgbdong123",
+    "pw": "kgb5152619",
+    "name": "양형규",
+    "contact": "01098992619",
+    "address": "백제고분로",
+    "gachaHistory": [
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T07:18:03.103Z"
+      },
+      {
+        "grade": "UR",
+        "timestamp": "2026-02-27T08:50:12.886Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T11:35:13.267Z"
+      },
+      {
+        "grade": "꽝",
+        "timestamp": "2026-02-27T11:35:24.929Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T11:37:14.008Z"
+      },
+      {
+        "grade": "꽝",
+        "timestamp": "2026-02-27T11:37:17.376Z"
+      },
+      {
+        "grade": "RRR",
+        "timestamp": "2026-02-27T11:37:23.702Z"
+      },
+      {
+        "grade": "RRR",
+        "timestamp": "2026-02-27T11:40:36.626Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T11:40:39.267Z"
+      },
+      {
+        "grade": "AR",
+        "timestamp": "2026-02-27T11:40:42.364Z"
+      },
+      {
+        "grade": "C or U",
+        "timestamp": "2026-02-27T11:40:44.939Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T11:40:56.287Z"
+      },
+      {
+        "grade": "C or U",
+        "timestamp": "2026-02-27T11:42:53.406Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T11:42:56.808Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T11:42:59.695Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T11:43:02.423Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T11:45:56.361Z"
+      },
+      {
+        "grade": "꽝",
+        "timestamp": "2026-02-27T12:01:44.235Z"
+      },
+      {
+        "grade": "꽝",
+        "timestamp": "2026-02-27T12:01:46.658Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T12:20:54.522Z"
+      },
+      {
+        "grade": "RRR",
+        "timestamp": "2026-02-27T12:20:56.633Z"
+      },
+      {
+        "grade": "AR",
+        "timestamp": "2026-02-27T12:20:58.833Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T13:25:02.756Z"
+      }
+    ],
+    "createdAt": "2026-02-27T07:17:51.315Z",
+    "coins": 4
+  },
+  {
+    "id": "cointest",
+    "pw": "test",
+    "name": "Test",
+    "contact": "000",
+    "address": "Seoul",
+    "gachaHistory": [
+      {
+        "grade": "C",
+        "timestamp": "2026-02-27T11:18:08.539Z"
+      },
+      {
+        "grade": "SR",
+        "timestamp": "2026-02-27T11:20:36.929Z"
+      }
+    ],
+    "createdAt": "2026-02-27T11:17:30.679Z",
+    "coins": 9
+  },
+  {
+    "id": "churiking",
+    "pw": "churichuri",
+    "name": "이츄리",
+    "contact": "010-7777-7777",
+    "address": "서울특별시 츄리둥지 777호",
+    "coins": 24,
+    "gachaHistory": [
+      {
+        "grade": "RRR",
+        "timestamp": "2026-02-27T12:21:30.120Z"
+      },
+      {
+        "grade": "C or U",
+        "timestamp": "2026-02-27T12:21:47.191Z"
+      },
+      {
+        "grade": "꽝",
+        "timestamp": "2026-02-27T12:21:51.160Z"
+      },
+      {
+        "grade": "C or U",
+        "timestamp": "2026-02-27T12:21:54.221Z"
+      },
+      {
+        "grade": "꽝",
+        "timestamp": "2026-02-27T12:21:56.945Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T12:21:59.140Z"
+      },
+      {
+        "grade": "RR",
+        "timestamp": "2026-02-27T12:22:01.204Z"
+      },
+      {
+        "grade": "C or U",
+        "timestamp": "2026-02-27T12:22:03.193Z"
+      },
+      {
+        "grade": "AR",
+        "timestamp": "2026-02-27T12:23:01.561Z"
+      },
+      {
+        "grade": "RRR",
+        "timestamp": "2026-02-27T13:27:24.198Z"
+      },
+      {
+        "grade": "C or U",
+        "timestamp": "2026-02-27T13:28:20.729Z"
+      },
+      {
+        "grade": "AR or ACE",
+        "timestamp": "2026-02-27T13:29:12.314Z"
+      },
+      {
+        "grade": "RRR",
+        "timestamp": "2026-02-27T13:29:22.612Z"
+      },
+      {
+        "grade": "꽝",
+        "timestamp": "2026-02-27T13:29:26.871Z"
+      }
+    ],
+    "createdAt": "2026-02-27T12:00:21.131Z"
+  }
+]
